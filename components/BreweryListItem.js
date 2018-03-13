@@ -10,6 +10,7 @@ import {
 import FadeIn from 'react-native-fade-in-image';
 import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 import { MaterialIcons } from '@expo/vector-icons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import Layout from '../constants/Layout';
 import { RegularText, BoldText } from './StyledText';
@@ -58,7 +59,7 @@ export default class BreweryListItem extends React.Component {
         </View>
 
         <View style={styles.buttonContainer}>
-          <MaterialIcons name="chevron-right" size={30} color="#b8c3c9" />
+        <FontAwesome name="send-o" size={20}/>
         </View>
       </TouchableNativeFeedback>
     );

@@ -19,6 +19,8 @@ import Actions from '../state/Actions';
 import BreweryList from '../components/BreweryList';
 import Layout from '../constants/Layout';
 import { BoldText, RegularText } from '../components/StyledText';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import Feather from '@expo/vector-icons/Feather';
 
 const MenuOptions = ['All', 'Nearby', 'Visited', 'Unvisited'];
 
@@ -158,7 +160,7 @@ export default class BreweryListScreen extends React.Component {
 
         <View style={styles.navigationBarRightButton}>
           <TouchableNativeFeedback onPress={this._handlePressUpdateLocation}>
-            <MaterialIcons name="my-location" size={20} />
+          <Feather name="search" size={22}/>
           </TouchableNativeFeedback>
         </View>
       </View>
