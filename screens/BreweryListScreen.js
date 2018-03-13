@@ -118,7 +118,7 @@ export default class BreweryListScreen extends React.Component {
         key={title}
         onPress={() => this._handleSelectOption(title)}>
         <View style={styles.menuOption}>
-          <RegularText>{title}</RegularText>
+          <RegularText style={{ color:'#fff'}}>{title}</RegularText>
         </View>
       </TouchableNativeFeedback>
     );
@@ -141,7 +141,7 @@ export default class BreweryListScreen extends React.Component {
             onPress={this._handleToggleMenu}>
             <View style={{ flexDirection: 'row' }}>
               <BoldText style={styles.navigationBarTitle}>
-                {this.state.selectedOption} Breweries
+                {this.state.selectedOption} Wifi Hotspots
               </BoldText>
 
               <Animated.View
@@ -201,10 +201,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   navigationBarContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#00A5AA',
     height: Layout.HEADER_HEIGHT,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#008F93',
     position: 'absolute',
     overflow: 'hidden',
     paddingTop: Constants.statusBarHeight,
@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
   navigationBarTitle: {
     fontSize: 17,
     letterSpacing: -0.5,
+    color:'#fff',
   },
   navigationBarRightButton: {
     position: 'absolute',
@@ -245,11 +246,11 @@ const styles = StyleSheet.create({
   },
   menuOption: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#eee',
+    borderBottomColor: '#008F93',
     alignItems: 'center',
     justifyContent: 'center',
     width: Layout.window.width,
     paddingVertical: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#00A5AA',
   },
 });

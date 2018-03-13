@@ -314,9 +314,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   heroImage: {
-    width: 210,
-    height: 190,
+    width: Layout.window.width,
+    height: 200,
     marginTop: 80,
+    paddingBottom:0,
   },
   heroBackground: {
     height: HeroHeight + 250,

@@ -115,11 +115,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   logoContainer: {
-    padding: 15,
+    padding: 10,
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
+    borderRadius:5,
   },
   buttonContainer: {
     paddingRight: 5,
