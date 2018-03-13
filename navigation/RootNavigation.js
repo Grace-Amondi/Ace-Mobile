@@ -41,12 +41,12 @@ const SettingsStack = StackNavigator(
       title: 'Settings',
       headerTitleStyle: {
         fontFamily: 'OpenSans-Bold',
-        fontSize: 17,
+        fontSize: 19,
         letterSpacing: -0.5,
         fontWeight: Platform.OS === 'android' ? '400' : 'normal',
       },
       headerStyle: {
-        backgroundColor: '#fff',
+        backgroundColor: '#00A5AA',
         ...Platform.select({
           android: {
             paddingTop: Constants.statusBarHeight,
@@ -76,7 +76,7 @@ const TabLayout = TabNavigator(
         const { routeName } = navigation.state;
         let label = capitalize(routeName);
         if (label === 'List') {
-          return 'Brewery List';
+          return 'Hotspots List';
         } else {
           return label;
         }

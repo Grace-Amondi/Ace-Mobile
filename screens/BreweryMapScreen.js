@@ -65,7 +65,7 @@ export default class BreweryMapScreen extends React.Component {
         <MapView
           style={styles.map}
           loadingBackgroundColor="#f9f5ed"
-          showsUserLocation
+          showsUserLocation={true}
           initialRegion={{
             latitude: -1.095621,
             longitude: 37.015379,
@@ -73,9 +73,10 @@ export default class BreweryMapScreen extends React.Component {
             longitudeDelta: 0.01,
           }}
           ref={(c) => { this.mapViewRef = c; }}>
-          {this.props.breweries.map((brewery,i) => {
-            let { latitude, longitude, name, isOpen ,address} = brewery;
 
+          {this.props.breweries.map((brewery,i) => {
+            let { latitude, longitude, name, isOpen } = brewery;
+              
             return (
               <MapView.Marker
                 key={name}

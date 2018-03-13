@@ -63,7 +63,7 @@ export default class BreweryDetails extends React.Component {
               </View>
               <VisitedCard breweryId={this.props.brewery.id} />
             </View>
-            <Button block info><Text>Add Review</Text></Button>
+            <Button block info style={{ width:200,left:50,right:0,bottom:10}}><Text>Add Review</Text></Button>
           </Animated.ScrollView>
         </View>
 

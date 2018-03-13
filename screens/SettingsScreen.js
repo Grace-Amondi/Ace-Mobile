@@ -53,6 +53,7 @@ export default class SettingsScreen extends React.Component {
             fallback={TouchableHighlight}
             underlayColor="#eee">
             <View style={[styles.cardBody, {flexDirection: 'row'}]}>
+            
               <MaterialIcons
                 name="exit-to-app"
                 size={25}
@@ -63,7 +64,15 @@ export default class SettingsScreen extends React.Component {
                 {signOutText}
               </RegularText>
             </View>
+            
           </TouchableNativeFeedback>
+          <View style={[styles.cardBody, {flexDirection: 'row'}]}>
+            
+              <MaterialIcons name="card-giftcard" size={25}/>
+              <RegularText style={styles.signOutText}>
+                Upgrade to Premium
+              </RegularText>
+            </View>
         </View>
 
         <StatusBar barStyle="default" />

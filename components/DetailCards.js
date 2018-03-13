@@ -296,6 +296,7 @@ export class MapCard extends React.Component {
         scrollEnabled={false}
         zoomEnabled={false}
         loadingEnabled={false}
+        showsUserLocation={true}
         initialRegion={{
           latitude,
           longitude,

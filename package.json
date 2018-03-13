@@ -25,6 +25,7 @@
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-native-fade-in-image": "^1.2.0",
+    "react-native-maps-directions": "^1.6.0",
     "react-native-root-modal": "^2.0.0",
     "react-native-star-rating": "^1.0.9",
     "react-navigation": "1.0.0-rc.2",
@@ -34,7 +35,7 @@
     "time-js": "0.0.5"
   },
   "devDependencies": {
-    "react-native-scripts": "1.11.1",
-    "jest-expo": "^25.1.0"
+    "jest-expo": "^25.1.0",
+    "react-native-scripts": "1.11.1"
   }
 }
