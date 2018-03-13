@@ -42,6 +42,9 @@ class App extends React.Component {
       'OpenSans-Light': require('./assets/fonts/OpenSans-Light.ttf'),
       'OpenSans': require('./assets/fonts/OpenSans-Regular.ttf'),
       'OpenSans-Bold': require('./assets/fonts/OpenSans-Semibold.ttf'),
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
     });
   };
 

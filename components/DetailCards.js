@@ -286,7 +286,7 @@ export class MapCard extends React.Component {
       return;
     }
 
-    let { name, latitude, longitude } = this.props.brewery;
+    let { name, latitude, longitude,isOpen } = this.props.brewery;
 
     return (
       <MapView
@@ -302,7 +302,11 @@ export class MapCard extends React.Component {
           latitudeDelta: 0.003,
           longitudeDelta: 0.003,
         }}>
-        <MapView.Marker coordinate={{ latitude, longitude }} title={name} />
+        <MapView.Marker 
+        coordinate={{ latitude, longitude }}
+         title={name}
+         pinColor={isOpen ? '#008F93' : 'red'}
+         />
       </MapView>
     );
   }
