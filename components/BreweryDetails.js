@@ -52,7 +52,7 @@ export default class BreweryDetails extends React.Component {
             <View style={styles.contentContainerStyle}>
               <MapCard
                 brewery={brewery}
-                onPress={this._handlePressDirections}
+                // onPress={this._handlePressDirections}
               />
               {/* <SummaryCard text={brewery.summary} /> */}
               {/* <DescriptionCard text={brewery.description} /> */}
@@ -266,8 +266,7 @@ export default class BreweryDetails extends React.Component {
   }
 
   _renderNavigationBarName(){
-    let {name } = this.props.brewery
-
+    let {name} = this.props.brewery;
     return (
       <BoldText>
             {name} is on Ace Mobile because it has space to sit 
@@ -275,6 +274,12 @@ export default class BreweryDetails extends React.Component {
       </BoldText>
     )
   }
+
+  _renderStarRating() {
+    let {name} = this.props.brewery;
+    console.log("my name is",name);
+  }
+
   _handlePressDirections = () => {
     let { address, postalCode, city } = this.props.brewery;
 

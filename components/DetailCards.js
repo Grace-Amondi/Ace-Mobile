@@ -18,11 +18,12 @@ import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedbac
 import { MapView } from 'expo';
 import { openImageGallery } from '@expo/react-native-image-gallery';
 import { MaterialIcons } from '@expo/vector-icons';
-
+import {Badge} from 'native-base';
 import Actions from '../state/Actions';
 import { RegularText, BoldText } from './StyledText';
 import Layout from '../constants/Layout';
 import Colors from '../constants/Colors';
+import StarRating from 'react-native-star-rating';
 
 export class DescriptionCard extends React.Component {
   render() {
@@ -189,6 +190,20 @@ class InstagramPhoto extends React.Component {
 }
 
 export class MapCard extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    let {rating}= this.props.brewery;
+    this.state = {
+      starCount: rating
+    };
+  }
+  onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating
+    });
+  }
+
   state = {
     shouldRenderMap: false,
     shouldRenderOverlay: true,
@@ -210,7 +225,7 @@ export class MapCard extends React.Component {
   }
 
   render() {
-    let { address, city, postalCode, name } = this.props.brewery;
+    let { address, city, postalCode, name, rating } = this.props.brewery;
 
     return (
       <View style={[styles.card, styles.mapContainer]}>
@@ -220,12 +235,18 @@ export class MapCard extends React.Component {
           <View style={styles.cardAction}>
             <View style={styles.cardActionLabel}>
               <RegularText style={styles.cardActionText}>
-                {address}, {postalCode}
+                {address}{rating}
               </RegularText>
-
-              <RegularText style={styles.cardActionSubtitleText}>
-                {city}
-              </RegularText>
+              <StarRating
+        disabled={false}
+        maxStars={5}
+        rating={this.state.starCount}
+        selectedStar={(rating) => this.onStarRatingPress(rating)}
+        fullStarColor={'gold'}
+      />
+              <Badge info ><RegularText style={{color:"white"}}>
+                {address}
+              </RegularText></Badge>
             </View>
 
             <MaterialIcons name="chevron-right" size={30} color="#b8c3c9" />

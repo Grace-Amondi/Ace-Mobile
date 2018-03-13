@@ -2,7 +2,7 @@ Arguments:
   /home/geogirl/.nvm/versions/node/v9.8.0/bin/node /usr/share/yarn/bin/yarn.js start
 
 PATH: 
-  /home/geogirl/.nvm/versions/node/v9.8.0/bin:/home/geogirl/bin:/home/geogirl/.local/bin:/home/geogirl/bin:/home/geogirl/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /home/geogirl/.nvm/versions/node/v9.8.0/bin:/home/geogirl/.local/share/umake/bin:/home/geogirl/bin:/home/geogirl/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 Yarn version: 
   1.5.1
@@ -36,10 +36,11 @@ npm manifest:
       "geolib": "^2.0.21",
       "immutable": "^3.8.1",
       "lodash": "^4.16.2",
-      "react":"16.2.0",
+      "react": "16.2.0",
       "react-native": "0.52.0",
       "react-native-fade-in-image": "^1.2.0",
       "react-native-root-modal": "^2.0.0",
+      "react-native-star-rating": "^1.0.9",
       "react-navigation": "1.0.0-rc.2",
       "react-redux": "^4.4.5",
       "redux": "^3.6.0",
@@ -6749,7 +6750,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 127
   Command: sh
   Arguments: -c react-native-scripts start
   Directory: /home/geogirl/Desktop/Projects/Ace-Mobile

@@ -24,8 +24,8 @@ export default async function computeDistancesAsync({dispatch, getState}) {
       {latitude: brewery.latitude, longitude: brewery.longitude},
     );
 
-    let distanceKm = (distanceM / 1000.0).toFixed(2);
-    let formattedDistance = `${distanceKm}km`;
+    // let distanceKm = (distanceM / 1000.0).toFixed(2);
+    let formattedDistance = `${distanceM}m`;
 
     let direction = geolib.getCompassDirection(
       {latitude: coords.latitude, longitude: coords.longitude},

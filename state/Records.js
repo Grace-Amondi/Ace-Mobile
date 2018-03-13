@@ -28,6 +28,7 @@ export const Brewery = Record({
   summary: '',
   distance: null,
   direction: null,
+  rating:'',
 });
 
 export const User = Record({
