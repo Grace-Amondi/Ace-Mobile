@@ -235,7 +235,7 @@ export class MapCard extends React.Component {
           <View style={styles.cardAction}>
             <View style={styles.cardActionLabel}>
               <RegularText style={styles.cardActionText}>
-                {address}{rating}
+                {address}
               </RegularText>
               <StarRating
         disabled={false}
@@ -293,6 +293,8 @@ export class MapCard extends React.Component {
         cacheEnabled={Platform.OS === 'android'}
         style={styles.map}
         loadingBackgroundColor="#f9f5ed"
+        scrollEnabled={false}
+        zoomEnabled={false}
         loadingEnabled={false}
         initialRegion={{
           latitude,

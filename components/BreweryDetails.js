@@ -24,6 +24,7 @@ import {
 } from './DetailCards';
 import formatTime from '../util/formatTime';
 import Layout from '../constants/Layout';
+import { Button } from 'native-base';
 
 @withNavigation
 export default class BreweryDetails extends React.Component {
@@ -62,6 +63,7 @@ export default class BreweryDetails extends React.Component {
               </View>
               <VisitedCard breweryId={this.props.brewery.id} />
             </View>
+            <Button block info><Text>Add Review</Text></Button>
           </Animated.ScrollView>
         </View>
 
