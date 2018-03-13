@@ -54,9 +54,12 @@ export default class BreweryDetails extends React.Component {
                 brewery={brewery}
                 onPress={this._handlePressDirections}
               />
-              <SummaryCard text={brewery.summary} />
-              <DescriptionCard text={brewery.description} />
-              <InstagramPhotosCard profile={brewery.instagram} />
+              {/* <SummaryCard text={brewery.summary} /> */}
+              {/* <DescriptionCard text={brewery.description} /> */}
+              {/* <InstagramPhotosCard profile={brewery.instagram} /> */}
+              <View style={{ paddingHorizontal:13}}>
+                {this._renderNavigationBarName()}
+              </View>
               <VisitedCard breweryId={this.props.brewery.id} />
             </View>
           </Animated.ScrollView>
@@ -262,6 +265,16 @@ export default class BreweryDetails extends React.Component {
     );
   }
 
+  _renderNavigationBarName(){
+    let {name } = this.props.brewery
+
+    return (
+      <BoldText>
+            {name} is on Ace Mobile because it has space to sit 
+            own with your laptop and work on important things.
+      </BoldText>
+    )
+  }
   _handlePressDirections = () => {
     let { address, postalCode, city } = this.props.brewery;
 
