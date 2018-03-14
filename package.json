@@ -25,6 +25,8 @@
     "native-base": "^2.3.10",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-app-intro": "^1.1.5",
+    "react-native-app-intro-slider": "^0.2.4",
     "react-native-fade-in-image": "^1.2.0",
     "react-native-maps-directions": "^1.6.0",
     "react-native-root-modal": "^2.0.0",

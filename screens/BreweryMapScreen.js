@@ -1,96 +1,74 @@
 import React from 'react';
-import { StyleSheet, View,Platform, Dimensions,Image} from 'react-native';
+import { StyleSheet, View,Platform, Dimensions,Image,Alert} from 'react-native';
 import { connect } from 'react-redux';
 import { Constants } from 'expo';
 import { MapView, Callout } from 'expo';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import Layout from '../constants/Layout';
 import Expo from "expo";
-
+import AppIntroSlider from 'react-native-app-intro-slider';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
+import { Ionicons } from '@expo/vector-icons';
+// @connect((data, props) => BreweryMapScreen.getDataProps(data, props))
 
-@connect(data => BreweryMapScreen.getDataProps(data))
+ 
+const slides = [
+  {
+    key: 'somethun',
+    title: 'Title 1',
+    text: 'Description.\nSay something cool',
+    image: require('/home/geogirl/Desktop/Ace-Mobile/screens/img/2.jpeg'),
+    backgroundColor: '#59b2ab',
+  },
+  {
+    key: 'somethun-dos',
+    title: 'Title 2',
+    text: 'Other cool stuff',
+    image: require('/home/geogirl/Desktop/Ace-Mobile/screens/img/2.jpeg'),
+    backgroundColor: '#febe29',
+  },
+  {
+    key: 'somethun1',
+    title: 'Rocket guy',
+    text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
+    image: require('/home/geogirl/Desktop/Ace-Mobile/screens/img/2.jpeg'),
+    backgroundColor: '#22bcb5',
+  }
+];
+
 export default class BreweryMapScreen extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps.brewery !== this.props.brewery;
-  }
-
-  static getDataProps(data) {
-    return {
-      breweries: data.breweries.all,
-    };
-  }
-  onMarkerPressed(marker) {
-    this[marker].showCallout();
-  }
-
-  renderCallout(marker) {
+  _renderNextButton = () => {
     return (
-      <MapView.Callout tooltip>
-        <View>
-        <Container style={{width:200, height:200}}>
-        <Content>
-          <Card>
-            <CardItem cardBody>
-              <Image source={{uri: 'http://res.cloudinary.com/acemobile/image/upload/c_thumb,h_260,w_260/v1520781441/20180226_154620.jpg'}} style={{height: 120, width: null, flex: 1}}/>
-            </CardItem>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{uri: 'http://res.cloudinary.com/acemobile/image/upload/c_thumb,h_200,w_200/v1520781441/20180226_154620.jpg'}} />
-                <Body>
-                  <Text style={{ fontSize: 12}}>Assembly Hall</Text>
-                  <Text note style={{ fontSize: 12}}>Juja,Kiambu</Text>
-                  <Text style={{ fontSize: 12}}> CLOSED</Text>
-                </Body>
-              </Left>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-        </View>
-      </MapView.Callout>
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="md-arrow-round-forward"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </View>
     );
   }
-
+  _renderDoneButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="md-checkmark"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </View>
+    );
+  }
   render() {
     return (
-      
-      <View style={{ flex: 1 }}>
-      <View key="navbar" style={styles.navigationBarContainer}>
-        <View style={styles.navigationBarTitleContainer}>
-        <Text style={{ alignItems:'center',color:'white' }}>Wifi Hotspots</Text>
-        </View>
-      </View>
-        <MapView
-          style={styles.map}
-          loadingBackgroundColor="#f9f5ed"
-          showsUserLocation={true}
-          initialRegion={{
-            latitude: -1.095621,
-            longitude: 37.015379,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-          ref={(c) => { this.mapViewRef = c; }}>
-
-          {this.props.breweries.map((brewery,i) => {
-            let { latitude, longitude, name, isOpen } = brewery;
-              
-            return (
-              <MapView.Marker
-                key={name}
-                pinColor={isOpen ? '#008F93' : 'red'}
-                coordinate={{ latitude, longitude }}
-                title={name}
-                onPress={() => this.onMarkerPressed(`marker + ${i}`)}
-                ref={(c) => { this[`marker + ${i}`] = c; }}
-              >{this.renderCallout(brewery)}</MapView.Marker>
-            );
-          })}
-        </MapView>
-      </View>
-
+      <AppIntroSlider
+        slides={slides}
+        renderDoneButton={this._renderDoneButton}
+        renderNextButton={this._renderNextButton}
+      />
     );
   }
 }
@@ -122,4 +100,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: Platform.OS === 'ios' ? 'center' : 'flex-start',
   },
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 320,
+    height: 320,
+  }
 });
