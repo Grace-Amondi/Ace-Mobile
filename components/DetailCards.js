@@ -10,15 +10,17 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  Text,
 } from 'react-native';
 import { connect } from 'react-redux';
 import FadeIn from 'react-native-fade-in-image';
 import ReadMore from '@expo/react-native-read-more-text';
 import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
-import { MapView } from 'expo';
+import { MapView,Constants, Location, Permissions } from 'expo';
 import { openImageGallery } from '@expo/react-native-image-gallery';
 import { MaterialIcons } from '@expo/vector-icons';
 import {Badge} from 'native-base';
+import MapViewDirections from 'react-native-maps-directions';
 import Actions from '../state/Actions';
 import { RegularText, BoldText } from './StyledText';
 import Layout from '../constants/Layout';
@@ -26,6 +28,8 @@ import Colors from '../constants/Colors';
 import StarRating from 'react-native-star-rating';
 
 export class DescriptionCard extends React.Component {
+
+
   render() {
     let { text } = this.props;
 
@@ -190,7 +194,37 @@ class InstagramPhoto extends React.Component {
 }
 
 export class MapCard extends React.Component {
+  state = {
+    location: null,
+    errorMessage: null,
+    shouldRenderMap: false,
+    shouldRenderOverlay: true,
+  };
   
+  componentWillMount() {
+    this._isMounted = false;
+
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync();
+    }
+  }
+
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ location });
+  };
+
   constructor(props) {
     super(props);
     let {rating}= this.props.brewery;
@@ -204,11 +238,6 @@ export class MapCard extends React.Component {
     });
   }
 
-  state = {
-    shouldRenderMap: false,
-    shouldRenderOverlay: true,
-  };
-
   componentDidMount() {
     this._isMounted = true;
 
@@ -220,13 +249,19 @@ export class MapCard extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
-    let { address, city, postalCode, name, rating } = this.props.brewery;
 
+    let { address, city, postalCode, name, rating } = this.props.brewery;
+    let coords = 'Waiting..';
+        if (this.state.errorMessage) {
+          coords = this.state.errorMessage;
+        } else if (this.state.location) {
+          coords = JSON.stringify(this.state.location.coords);
+          let {latitude,longitude}= this.state.location.coords;
+          let myLatitude = latitude;
+          let myLongitude = longitude;
+          console.log(myLatitude, myLongitude);
+        }
     return (
       <View style={[styles.card, styles.mapContainer]}>
         {this._maybeRenderMap()}
@@ -247,6 +282,9 @@ export class MapCard extends React.Component {
               <Badge info ><RegularText style={{color:"white"}}>
                 {address}
               </RegularText></Badge>
+              <View style={styles.container}>
+                <Text style={styles.paragraph}>{coords}</Text>
+              </View>
             </View>
 
             <MaterialIcons name="chevron-right" size={30} color="#b8c3c9" />
@@ -303,6 +341,11 @@ export class MapCard extends React.Component {
           latitudeDelta: 0.003,
           longitudeDelta: 0.003,
         }}>
+        <MapViewDirections
+    origin={origin}
+    destination={destination}
+    apikey={GOOGLE_MAPS_APIKEY}
+  />
         <MapView.Marker 
         coordinate={{ latitude, longitude }}
          title={name}

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Growler Prowler",
-    "description": "Find breweries around you in Vancouver!",
+    "name": "Ace Mobile",
+    "description": "Looking for wifi and a seat? Ace helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you're looking for.",
     "slug": "growler-prowler",
     "sdkVersion": "25.0.0",
     "version": "1.0.0",

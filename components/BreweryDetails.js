@@ -8,6 +8,8 @@ import {
   StyleSheet,
   Text,
   View,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Constants, LinearGradient } from 'expo';
@@ -24,13 +26,18 @@ import {
 } from './DetailCards';
 import formatTime from '../util/formatTime';
 import Layout from '../constants/Layout';
-import { Button } from 'native-base';
+import { Button,Item, Input, Icon } from 'native-base';
 
 @withNavigation
 export default class BreweryDetails extends React.Component {
   state = {
     scrollY: new Animated.Value(0),
+    modalVisible:false,
   };
+
+  setModalVisible(visible){
+    this.setState({modalVisible: visible});
+  }
 
   render() {
     let { brewery } = this.props;
@@ -63,7 +70,32 @@ export default class BreweryDetails extends React.Component {
               </View>
               <VisitedCard breweryId={this.props.brewery.id} />
             </View>
-            <Button block info style={{ width:200,left:50,right:0,bottom:10}}><Text>Add Review</Text></Button>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }}>
+              <View style={{marginTop: 22,flex:0}}>
+                <View>       
+                  <Item success>
+                    <Input placeholder='Please add a review'/>
+                    <MaterialIcons name='rate-review' size={22}/>
+                  </Item>     
+                  <Button block info onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                    }}
+                    style={{ width:200,left:50,right:0,top:10}}
+                    ><Text>Submit</Text>
+                  </Button>
+                </View>
+              </View>
+            </Modal>
+            <Button block info style={{ width:200,left:50,right:0,bottom:10}} 
+            onPress={() => {
+            this.setModalVisible(true);
+            }}><Text>Add Review</Text></Button>
           </Animated.ScrollView>
         </View>
 

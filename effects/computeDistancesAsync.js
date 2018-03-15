@@ -17,6 +17,7 @@ export default async function computeDistancesAsync({dispatch, getState}) {
   let { coords } = await Location.getCurrentPositionAsync({
     enableHighAccuracy: Platform.OS === 'ios',
   });
+  console.log("latitude:",coords.latitude + ",longitude:",coords.longitude)
 
   let breweriesWithDistances = breweries.all.map(brewery => {
     let distanceM = geolib.getDistance(

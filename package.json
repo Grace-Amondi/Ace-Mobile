@@ -36,6 +36,7 @@
     "time-js": "0.0.5"
   },
   "devDependencies": {
+    "exp": "^49.2.2",
     "jest-expo": "^25.1.0",
     "react-native-scripts": "1.11.1"
   }
