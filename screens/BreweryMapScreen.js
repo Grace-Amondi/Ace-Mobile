@@ -3,13 +3,15 @@ import { StyleSheet, View,Platform, Dimensions,Image} from 'react-native';
 import { connect } from 'react-redux';
 import { Constants } from 'expo';
 import { MapView, Callout } from 'expo';
+import { withNavigation } from 'react-navigation';
+import Expo from "expo";
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import Layout from '../constants/Layout';
-import Expo from "expo";
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
+@withNavigation
 @connect(data => BreweryMapScreen.getDataProps(data))
 export default class BreweryMapScreen extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -20,12 +22,17 @@ export default class BreweryMapScreen extends React.Component {
     return {
       breweries: data.breweries.all,
     };
+   
   }
   onMarkerPressed(marker) {
     this[marker].showCallout();
   }
 
-  renderCallout(marker) {
+  _handlePressBrewery = brewery => {
+    this.props.navigation.navigate('details', { breweryId: brewery.id });
+  };
+
+  renderCallout(brewery) {
     return (
       <MapView.Callout tooltip>
         <View>
@@ -33,15 +40,20 @@ export default class BreweryMapScreen extends React.Component {
         <Content>
           <Card>
             <CardItem cardBody>
-              <Image source={{uri: 'http://res.cloudinary.com/acemobile/image/upload/c_thumb,h_260,w_260/v1520781441/20180226_154620.jpg'}} style={{height: 120, width: null, flex: 1}}/>
+              <Image 
+              source={{uri: brewery.logo}} 
+              style={{height: 120, width: null, flex: 1}}
+              onPress={() => this._handlePressBrewery(brewery)}
+              brewery={brewery}
+            />
             </CardItem>
             <CardItem>
               <Left>
-                <Thumbnail source={{uri: 'http://res.cloudinary.com/acemobile/image/upload/c_thumb,h_200,w_200/v1520781441/20180226_154620.jpg'}} />
+                <Thumbnail source={{uri: brewery.smallLogo}} />
                 <Body>
-                  <Text style={{ fontSize: 12}}>Assembly Hall</Text>
-                  <Text note style={{ fontSize: 12}}>Juja,Kiambu</Text>
-                  <Text style={{ fontSize: 12}}> CLOSED</Text>
+                  <Text style={{ fontSize: 12}}>{brewery.name}</Text>
+                  <Text note style={{ fontSize: 12}}>{brewery.address}</Text>
+                  <Text style={{ fontSize: 12}}>{brewery.isOpen}</Text>
                 </Body>
               </Left>
             </CardItem>
@@ -75,7 +87,7 @@ export default class BreweryMapScreen extends React.Component {
           ref={(c) => { this.mapViewRef = c; }}>
 
           {this.props.breweries.map((brewery,i) => {
-            let { latitude, longitude, name, isOpen } = brewery;
+            let { latitude, longitude, name, isOpen,smallLogo,logo } = brewery;
               
             return (
               <MapView.Marker

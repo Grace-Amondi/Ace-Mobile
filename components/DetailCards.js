@@ -310,14 +310,6 @@ export class MapCard extends React.Component {
   }
 
   _maybeRenderMap() {
-    let coords = 'Waiting..';
-    if (this.state.errorMessage) {
-      coords = this.state.errorMessage;
-    } else if (this.state.location) {
-      coords = JSON.stringify(this.state.location.coords);
-    let {latitude,longitude}= this.state.location.coords;
-    console.log(coords)
-    }
     if (!this.state.shouldRenderMap) {
       return;
     }
@@ -343,6 +335,7 @@ export class MapCard extends React.Component {
     origin={{latitude:this.state.location.coords.latitude,longitude: this.state.location.coords.longitude}}
     destination={{latitude, longitude}}
     apikey={GOOGLE_MAPS_APIKEY}
+    style={{backgroundColor:'red'}}
   />}
         
         <MapView.Marker 
