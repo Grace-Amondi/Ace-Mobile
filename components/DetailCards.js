@@ -27,6 +27,7 @@ import Layout from '../constants/Layout';
 import Colors from '../constants/Colors';
 import StarRating from 'react-native-star-rating';
 
+const GOOGLE_MAPS_APIKEY = 'AIzaSyCfq2CvUULOQF8XMKh4qO4ZnJvAqiY3KfY';
 export class DescriptionCard extends React.Component {
 
 
@@ -252,16 +253,8 @@ export class MapCard extends React.Component {
   render() {
 
     let { address, city, postalCode, name, rating } = this.props.brewery;
-    let coords = 'Waiting..';
-        if (this.state.errorMessage) {
-          coords = this.state.errorMessage;
-        } else if (this.state.location) {
-          coords = JSON.stringify(this.state.location.coords);
-          let {latitude,longitude}= this.state.location.coords;
-          let myLatitude = latitude;
-          let myLongitude = longitude;
-          console.log(myLatitude, myLongitude);
-        }
+    
+        
     return (
       <View style={[styles.card, styles.mapContainer]}>
         {this._maybeRenderMap()}
@@ -282,9 +275,6 @@ export class MapCard extends React.Component {
               <Badge info ><RegularText style={{color:"white"}}>
                 {address}
               </RegularText></Badge>
-              <View style={styles.container}>
-                <Text style={styles.paragraph}>{coords}</Text>
-              </View>
             </View>
 
             <MaterialIcons name="chevron-right" size={30} color="#b8c3c9" />
@@ -320,12 +310,20 @@ export class MapCard extends React.Component {
   }
 
   _maybeRenderMap() {
+    let coords = 'Waiting..';
+    if (this.state.errorMessage) {
+      coords = this.state.errorMessage;
+    } else if (this.state.location) {
+      coords = JSON.stringify(this.state.location.coords);
+    let {latitude,longitude}= this.state.location.coords;
+    console.log(coords)
+    }
     if (!this.state.shouldRenderMap) {
       return;
     }
 
     let { name, latitude, longitude,isOpen } = this.props.brewery;
-
+    
     return (
       <MapView
         cacheEnabled={Platform.OS === 'android'}
@@ -338,16 +336,17 @@ export class MapCard extends React.Component {
         initialRegion={{
           latitude,
           longitude,
-          latitudeDelta: 0.003,
-          longitudeDelta: 0.003,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
         }}>
-        <MapViewDirections
-    origin={origin}
-    destination={destination}
+        {this.state.location&&<MapViewDirections
+    origin={{latitude:this.state.location.coords.latitude,longitude: this.state.location.coords.longitude}}
+    destination={{latitude, longitude}}
     apikey={GOOGLE_MAPS_APIKEY}
-  />
+  />}
+        
         <MapView.Marker 
-        coordinate={{ latitude, longitude }}
+        coordinate={{ latitude,longitude }}
          title={name}
          pinColor={isOpen ? '#008F93' : 'red'}
          />
