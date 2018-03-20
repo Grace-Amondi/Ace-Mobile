@@ -42,6 +42,7 @@ npm manifest:
       "react": "16.2.0",
       "react-native": "0.52.0",
       "react-native-fade-in-image": "^1.2.0",
+      "react-native-internet-status-view": "^0.1.1",
       "react-native-maps-directions": "^1.6.0",
       "react-native-root-modal": "^2.0.0",
       "react-native-star-rating": "^1.0.9",
@@ -7212,7 +7213,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit signal: SIGHUP
+  Exit code: 1
   Command: sh
   Arguments: -c react-native-scripts start
   Directory: /home/geogirl/Desktop/Ace-Mobile

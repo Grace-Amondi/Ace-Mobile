@@ -7,6 +7,7 @@ import { withNavigation } from 'react-navigation';
 import Expo from "expo";
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import Layout from '../constants/Layout';
+import BreweryDetails from '../components/BreweryDetails';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -29,7 +30,13 @@ export default class BreweryMapScreen extends React.Component {
   }
 
   _handlePressBrewery = brewery => {
-    this.props.navigation.navigate('details', { breweryId: brewery.id });
+    return (
+      <BreweryDetails
+        brewery={this.props.brewery}
+        isVisited={this.props.isVisited}
+        onToggleVisited={this._onToggleVisited}
+      />
+    );  
   };
 
   renderCallout(brewery) {
@@ -43,7 +50,6 @@ export default class BreweryMapScreen extends React.Component {
               <Image 
               source={{uri: brewery.logo}} 
               style={{height: 120, width: null, flex: 1}}
-              onPress={() => this._handlePressBrewery(brewery)}
               brewery={brewery}
             />
             </CardItem>
@@ -76,6 +82,7 @@ export default class BreweryMapScreen extends React.Component {
       </View>
         <MapView
           style={styles.map}
+          onCalloutPress={(brewery) => this._handlePressBrewery()}
           loadingBackgroundColor="#f9f5ed"
           showsUserLocation={true}
           initialRegion={{

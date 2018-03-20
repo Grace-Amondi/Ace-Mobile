@@ -7,12 +7,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "platforms": ["ios", "android"],
-    "primaryColor": "#f6bd94",
+    "primaryColor": "#00A5AA",
     "privacy": "unlisted",
     "icon": "./icon.png",
     "splash": {
-      "backgroundColor": "#f6bd94",
-      "image": "./splash.png",
+      "backgroundColor": "#00A5AA",
+      "image": "./ace.png",
       "resizeMode": "contain"
     },
     "android": {

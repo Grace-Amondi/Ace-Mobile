@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 import Modal from 'react-native-root-modal';
 import { Header } from 'react-navigation';
-
 import Actions from '../state/Actions';
 import BreweryList from '../components/BreweryList';
 import Layout from '../constants/Layout';

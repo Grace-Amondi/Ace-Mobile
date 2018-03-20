@@ -323,8 +323,11 @@ export class MapCard extends React.Component {
         loadingBackgroundColor="#f9f5ed"
         scrollEnabled={false}
         zoomEnabled={false}
-        loadingEnabled={false}
+        loadingEnabled={true}
+        loadingIndicatorColor="#606060"
         showsUserLocation={true}
+        showsMyLocationButton={true}
+        fitToElements={true}
         initialRegion={{
           latitude,
           longitude,
@@ -332,11 +335,11 @@ export class MapCard extends React.Component {
           longitudeDelta: 0.005,
         }}>
         {this.state.location&&<MapViewDirections
-    origin={{latitude:this.state.location.coords.latitude,longitude: this.state.location.coords.longitude}}
-    destination={{latitude, longitude}}
-    apikey={GOOGLE_MAPS_APIKEY}
-    style={{backgroundColor:'red'}}
-  />}
+          origin={{latitude:this.state.location.coords.latitude,longitude: this.state.location.coords.longitude}}
+          destination={{latitude, longitude}}
+          apikey={GOOGLE_MAPS_APIKEY}
+          style={{backgroundColor:'red'}}
+        />}
         
         <MapView.Marker 
         coordinate={{ latitude,longitude }}

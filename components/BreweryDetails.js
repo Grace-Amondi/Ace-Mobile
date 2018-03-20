@@ -15,7 +15,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Constants, LinearGradient } from 'expo';
 import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 import { withNavigation, Header, HeaderBackButton } from 'react-navigation';
-
+import {InternetStatusView} from 'react-native-internet-status-view';
 import { BoldText, RegularText } from './StyledText';
 import {
   MapCard,
@@ -295,6 +295,10 @@ export default class BreweryDetails extends React.Component {
             {text}
           </BoldText>
         </Animated.View>
+        {/* <View>
+        <InternetStatusView
+    textToDisplay="Sorry You're Not Connected to the Internet"
+  /></View> */}
       </View>
     );
   }
