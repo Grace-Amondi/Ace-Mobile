@@ -11,8 +11,8 @@
     "privacy": "unlisted",
     "icon": "./icon.png",
     "splash": {
-      "backgroundColor": "#00A5AA",
-      "image": "./ace.png",
+      "backgroundColor": "#89AEFD",
+      "image": "./jkuatace.png",
       "resizeMode": "contain"
     },
     "android": {
@@ -20,7 +20,7 @@
       "package": "xyz.bront.growler",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyD6TAyiTkI3nULh6-JhZJqRxJ0S734dw6E"
+          "apiKey": "AIzaSyCfq2CvUULOQF8XMKh4qO4ZnJvAqiY3KfY"
         }
       }
     },

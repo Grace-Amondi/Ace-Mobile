@@ -322,7 +322,7 @@ export class MapCard extends React.Component {
         style={styles.map}
         loadingBackgroundColor="#f9f5ed"
         scrollEnabled={false}
-        zoomEnabled={false}
+        zoomEnabled={true}
         loadingEnabled={true}
         loadingIndicatorColor="#606060"
         showsUserLocation={true}
@@ -338,7 +338,10 @@ export class MapCard extends React.Component {
           origin={{latitude:this.state.location.coords.latitude,longitude: this.state.location.coords.longitude}}
           destination={{latitude, longitude}}
           apikey={GOOGLE_MAPS_APIKEY}
-          style={{backgroundColor:'red'}}
+          strokeColor='purple'
+          strokeWidth={3}
+          mode='walking'
+          resetOnChange={true}
         />}
         
         <MapView.Marker 
